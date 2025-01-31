@@ -1,59 +1,51 @@
-import React from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { FieldType } from '../types';
-import { Button } from 'antd';
-import { CopyClipboardHandler } from '../helper/copy';
-import { FileOutlined, CopyOutlined } from '@ant-design/icons';
-export default function AntFormCodeView({ fields }: { fields: FieldType[] }) {
-  const { copied, click_button_handler } = CopyClipboardHandler();
 
-  const generateFormHandlerCode2 = () => {
-    const componentsToImport = new Set();
+export const generateFormHandlerCode2 = (fields: FieldType[]) => {
+  const componentsToImport = new Set();
 
-    fields.forEach((field) => {
-      switch (field.type) {
-        case 'input':
-          componentsToImport.add('Input');
-          break;
-        case 'textarea':
-          componentsToImport.add('Input');
-          break;
-        case 'select':
-        case 'tag_select':
-        case 'multi_select':
-          componentsToImport.add('Select');
-          break;
-        case 'checkbox':
-          componentsToImport.add('Checkbox');
-          break;
-        case 'radio':
-          componentsToImport.add('Radio');
-          break;
-        case 'datepicker':
-          componentsToImport.add('DatePicker');
-          break;
-        case 'timepicker':
-          componentsToImport.add('TimePicker');
-          break;
-        case 'number':
-          componentsToImport.add('InputNumber');
-          break;
-        case 'switch':
-          componentsToImport.add('Switch');
-          break;
-        case 'upload':
-          componentsToImport.add('Upload');
-          break;
-        default:
-          break;
-      }
-    });
+  fields.forEach((field) => {
+    switch (field.type) {
+      case 'input':
+        componentsToImport.add('Input');
+        break;
+      case 'textarea':
+        componentsToImport.add('Input');
+        break;
+      case 'select':
+      case 'tag_select':
+      case 'multi_select':
+        componentsToImport.add('Select');
+        break;
+      case 'checkbox':
+        componentsToImport.add('Checkbox');
+        break;
+      case 'radio':
+        componentsToImport.add('Radio');
+        break;
+      case 'datepicker':
+        componentsToImport.add('DatePicker');
+        break;
+      case 'timepicker':
+        componentsToImport.add('TimePicker');
+        break;
+      case 'number':
+        componentsToImport.add('InputNumber');
+        break;
+      case 'switch':
+        componentsToImport.add('Switch');
+        break;
+      case 'upload':
+        componentsToImport.add('Upload');
+        break;
+      default:
+        break;
+    }
+  });
 
-    // Construct the import statement with all components in one line
-    const importStatement = `import {Form${Array.from(componentsToImport).length > 0 ? ', ' : ''}${Array.from(componentsToImport).join(', ')}, Button, notification, FormProps } from 'antd';`;
+  // Construct the import statement with all components in one line
+  const importStatement = `import {Form${Array.from(componentsToImport).length > 0 ? ', ' : ''}${Array.from(componentsToImport).join(', ')}, Button, notification, FormProps } from 'antd';`;
 
-    return `
+  return `
   ${importStatement}
   
   import { UploadOutlined } from '@ant-design/icons';
@@ -166,21 +158,4 @@ ${fields
   
   export default MyForm;
   `;
-  };
-
-  return (
-    <div className="relative">
-      <Button
-        icon={!copied ? <FileOutlined /> : <CopyOutlined />}
-        className="!absolute -top-16 right-4"
-        type="dashed"
-        onClick={() => click_button_handler(generateFormHandlerCode2())}
-      >
-        {/* {!copied ? <FileOutlined /> : <CopyOutlined />} */}
-      </Button>
-      <SyntaxHighlighter language="jsx" style={vscDarkPlus} showLineNumbers>
-        {generateFormHandlerCode2().trim()}
-      </SyntaxHighlighter>
-    </div>
-  );
-}
+};

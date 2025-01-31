@@ -1,4 +1,4 @@
-import FormBuilder from '@components/form-builder';
+import FormBuilder from '@components/ant-form-builder';
 
 const Page = () => {
   return <FormBuilder />;
