@@ -10,11 +10,7 @@ export default function AntDFormSidebar({
   addField: (type: string) => void;
 }) {
   return fieldOptions.map((field) => (
-    <Button
-      className="w-full"
-      key={field.value}
-      onClick={() => addField(field.value)}
-    >
+    <Button key={field.value} onClick={() => addField(field.value)}>
       Add {field.label}
     </Button>
   ));
