@@ -12,6 +12,7 @@ import {
   Upload,
   Empty,
   notification,
+  FormProps,
 } from 'antd';
 import { motion, AnimatePresence } from 'framer-motion';
 import { UploadOutlined } from '@ant-design/icons';
@@ -23,7 +24,9 @@ export default function AntDFormView({ fields }: { fields: FieldType[] }) {
   if (fields.length === 0) {
     return <Empty description="No fields added yet" />;
   }
-  const onFinish = (values: any) => {
+  type FieldType = keyof typeof fields;
+
+  const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
     notification.success({
       message: 'Success',
       description: <pre>{JSON.stringify(values, null, 2)}</pre>,
@@ -52,7 +55,7 @@ export default function AntDFormView({ fields }: { fields: FieldType[] }) {
                 transition: { duration: 0.1 },
               }}
             >
-              <Form.Item
+              <Form.Item<FieldType>
                 label={field.label}
                 name={field.name}
                 rules={
@@ -61,81 +64,70 @@ export default function AntDFormView({ fields }: { fields: FieldType[] }) {
                     : []
                 }
               >
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  {field.type === 'input' && (
-                    <Input placeholder={field.placeholder} />
-                  )}
-                  {field.type === 'textarea' && (
-                    <Input.TextArea placeholder={field.placeholder} />
-                  )}
-                  {field.type === 'select' && (
-                    <Select
-                      placeholder={field.placeholder}
-                      allowClear
-                      showSearch
-                    >
-                      <Option value="option1">Option 1</Option>
-                      <Option value="option2">Option 2</Option>
-                    </Select>
-                  )}
-                  {field.type === 'multi_select' && (
-                    <Select
-                      placeholder={field.placeholder}
-                      allowClear
-                      showSearch
-                      mode="multiple"
-                      options={[
-                        { value: '1', label: 'Option 1' },
-                        { value: '2', label: 'Option 2' },
-                      ]}
-                    ></Select>
-                  )}
-                  {field.type === 'tag_select' && (
-                    <Select
-                      placeholder={field.placeholder}
-                      allowClear
-                      showSearch
-                      mode="tags"
-                      options={[
-                        { value: '1', label: 'Option 1' },
-                        { value: '2', label: 'Option 2' },
-                      ]}
-                    ></Select>
-                  )}
-                  {field.type === 'checkbox' && (
-                    <Checkbox className="w-full">{field.label}</Checkbox>
-                  )}
-                  {field.type === 'radio' && (
-                    <Radio.Group className="w-full">
-                      <Radio value="1">Option 1</Radio>
-                      <Radio value="2">Option 2</Radio>
-                    </Radio.Group>
-                  )}
-                  {field.type === 'datepicker' && (
-                    <DatePicker placeholder={field.placeholder} />
-                  )}
-                  {field.type === 'timepicker' && (
-                    <TimePicker placeholder={field.placeholder} />
-                  )}
-                  {field.type === 'number' && (
-                    <InputNumber placeholder={field.placeholder} />
-                  )}
-                  {field.type === 'switch' && <Switch />}
-                  {field.type === 'upload' && (
-                    <Upload>
-                      <Button icon={<UploadOutlined />}>
-                        {field.placeholder}
-                      </Button>
-                    </Upload>
-                  )}
-                </div>
+                {field.type === 'input' && (
+                  <Input placeholder={field.placeholder} />
+                )}
+                {field.type === 'textarea' && (
+                  <Input.TextArea placeholder={field.placeholder} />
+                )}
+                {field.type === 'select' && (
+                  <Select placeholder={field.placeholder} allowClear showSearch>
+                    <Option value="option1">Option 1</Option>
+                    <Option value="option2">Option 2</Option>
+                  </Select>
+                )}
+                {field.type === 'multi_select' && (
+                  <Select
+                    placeholder={field.placeholder}
+                    allowClear
+                    showSearch
+                    mode="multiple"
+                    options={[
+                      { value: '1', label: 'Option 1' },
+                      { value: '2', label: 'Option 2' },
+                    ]}
+                  ></Select>
+                )}
+                {field.type === 'tag_select' && (
+                  <Select
+                    placeholder={field.placeholder}
+                    allowClear
+                    showSearch
+                    mode="tags"
+                    options={[
+                      { value: '1', label: 'Option 1' },
+                      { value: '2', label: 'Option 2' },
+                    ]}
+                  ></Select>
+                )}
+                {field.type === 'checkbox' && (
+                  <Checkbox className="w-full">{field.label}</Checkbox>
+                )}
+                {field.type === 'radio' && (
+                  <Radio.Group className="w-full">
+                    <Radio value="1">Option 1</Radio>
+                    <Radio value="2">Option 2</Radio>
+                  </Radio.Group>
+                )}
+                {field.type === 'datepicker' && (
+                  <DatePicker placeholder={field.placeholder} />
+                )}
+                {field.type === 'timepicker' && (
+                  <TimePicker placeholder={field.placeholder} />
+                )}
+                {field.type === 'number' && (
+                  <InputNumber placeholder={field.placeholder} />
+                )}
+
+                {field.type === 'switch' && <Switch />}
+
+                {field.type === 'upload' && (
+                  <Upload>
+                    <Button icon={<UploadOutlined />}>
+                      {field.placeholder}
+                    </Button>
+                  </Upload>
+                )}
               </Form.Item>
             </motion.div>
           ))}

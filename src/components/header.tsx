@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import React from 'react';
 import { LinkItem } from './link-item';
+import Link from 'next/link';
 
 export function Header() {
   const menu = [
@@ -31,36 +31,16 @@ export function Header() {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-
                   {menu.map((item) => (
                     <LinkItem key={item.name} item={item} />
                   ))}
-                  {/* <a
-                    href="#"
-                    className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-                    aria-current="page"
+                  <Link
+                    className="absolute right-2 top-5 text-white font-semibold underline"
+                    href={`https://github.com/Abdur-Shobur/form-builder`}
+                    target="_blank"
                   >
-                    Dashboard
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Team
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Projects
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Calendar
-                  </a> */}
+                    Github
+                  </Link>
                 </div>
               </div>
             </div>

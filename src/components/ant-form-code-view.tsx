@@ -51,14 +51,40 @@ export default function AntFormCodeView({ fields }: { fields: FieldType[] }) {
     });
 
     // Construct the import statement with all components in one line
-    const importStatement = `import {Form${Array.from(componentsToImport).length > 0 ? ', ' : ''}${Array.from(componentsToImport).join(', ')}, Button, notification } from 'antd';`;
+    const importStatement = `import {Form${Array.from(componentsToImport).length > 0 ? ', ' : ''}${Array.from(componentsToImport).join(', ')}, Button, notification, FormProps } from 'antd';`;
 
     return `
   ${importStatement}
   
   import { UploadOutlined } from '@ant-design/icons';
   
-  const onFinish = (values: any) => {
+  type FieldType = {
+${fields
+  .map(
+    (f) =>
+      `  ${f.name}: ${(() => {
+        switch (f.type) {
+          case 'multi_select':
+          case 'tag_select':
+            return `string[]`;
+          case 'datepicker':
+            return `Date`;
+          case 'timepicker':
+            return `Date`;
+          case 'switch':
+            return `boolean`;
+          case 'upload':
+            return `string[]`;
+          default:
+            return `string`;
+        }
+      })()};`,
+  )
+  .join('\n')}
+  };
+
+
+  const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
     notification.success({
       message: 'Success',
       description: <pre>{JSON.stringify(values, null, 2)}</pre>,
@@ -70,10 +96,9 @@ export default function AntFormCodeView({ fields }: { fields: FieldType[] }) {
       ${fields
         .map(
           (field) => `
-      <Form.Item
+      <Form.Item<FieldType>
         label="${field.label}"
-        name="${field.name}"
-        ${field.required ? `rules={[{ required: true, message: 'This field is required' }]}` : ''}
+        name="${field.name}"${!field.required ? '' : '\n' + `        rules={[{ required: true, message: 'This field is required' }]}`}
       >
         ${(() => {
           switch (field.type) {
@@ -114,19 +139,25 @@ export default function AntFormCodeView({ fields }: { fields: FieldType[] }) {
               return `<Radio.Group><Radio value="1">Option 1</Radio><Radio value="2">Option 2</Radio></Radio.Group>`;
             case 'datepicker':
               return '<DatePicker />';
+
             case 'timepicker':
               return '<TimePicker />';
+
             case 'number':
               return '<InputNumber />';
+
             case 'switch':
               return '<Switch />';
+
             case 'upload':
               return `<Upload><Button icon={<UploadOutlined />}>${field.placeholder}</Button></Upload>`;
             default:
               return '';
           }
         })()}
-      </Form.Item>`,
+      </Form.Item>
+         
+      `,
         )
         .join('')}
       <Button type="primary" htmlType="submit">Submit</Button>
