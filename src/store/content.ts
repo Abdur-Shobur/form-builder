@@ -7,71 +7,54 @@ export const content = {
     bannerImage: '/image.png',
   },
   feature: {
-    title: 'Enjoy the finest features with our products',
+    title: 'Ant Design Form Builder with  TypeScript',
     description:
-      'We provide all the advantages that can simplify all your financial transactions without any further requirements',
+      'You can create and build customize Ant Design form with validation and TypeScript support',
     cards: [
       {
-        title: 'Quick Transaction',
+        title: 'Ant Input',
         description:
-          'We provide faster transaction speeds than competitors, so money arrives and is received faster',
-        icon: `<svg
-                    width="30"
-                    height="30"
-                    viewBox="0 0 30 30"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></path>
-                  </svg>`,
+          'All the Ant Design form components are supported, including Input, Select and more',
+        icon: ` `,
       },
       {
-        title: 'Quick Transaction',
-        description:
-          'We provide faster transaction speeds than competitors, so money arrives and is received faster',
+        title: 'Upload File',
+        description: 'You can upload file with Ant Design Upload component',
         icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
       },
       {
-        title: 'Quick Transaction',
+        title: 'Select Multiple',
         description:
-          'We provide faster transaction speeds than competitors, so money arrives and is received faster',
+          'You can select multiple option with Ant Design Select component',
         icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
       },
       {
-        title: 'Quick Transaction',
+        title: 'Other Components',
         description:
-          'We provide faster transaction speeds than competitors, so money arrives and is received faster',
+          'Others components such as Checkbox, Radio, Switch, DatePicker, TimePicker, and more are supported',
         icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
       },
     ],
   },
   features2: {
-    title: 'Developed from scratch for seamless online functionality',
+    title: 'Make Tailwind Form Builder with ZOD Validation & TypeScript',
     description:
-      'Using technology to make finance simpler, smarter and more rewarding.',
+      'Create Tailwind design form with Zod Validation and TypeScript. That very simple to create and use. Just copy and paste and use it',
     cards: [
       {
-        title: 'Quick Transaction',
-        description:
-          'We provide faster transaction speeds than competitors, so money arrives and is received faster',
+        title: 'Form Builder',
+        description: 'Heavy form builder Tailwind css that create easy to make',
         icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
       },
       {
-        title: 'Quick Transaction',
+        title: 'Zod Validation & TypeScript',
         description:
-          'We provide faster transaction speeds than competitors, so money arrives and is received faster',
+          'Make easy way to create form with Zod Validation and TypeScript',
         icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
       },
       {
-        title: 'Quick Transaction',
-        description:
-          'We provide faster transaction speeds than competitors, so money arrives and is received faster',
+        title: 'Editable Form Builder',
+        description: 'You can make editable form builder with Tailwind css',
         icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
       },
     ],

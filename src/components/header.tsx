@@ -1,11 +1,10 @@
 import React from 'react';
 import { LinkItem } from './link-item';
-import Link from 'next/link';
 
 export function Header() {
   const menu = [
     {
-      name: 'Home',
+      name: 'Form Builder',
       href: '/',
       current: true,
     },
@@ -15,13 +14,18 @@ export function Header() {
       current: false,
     },
     {
-      name: 'tailwind Playground',
+      name: 'Tailwind Playground',
       href: '/tailwind-playground',
       current: false,
     },
     {
       name: 'Ant Design Playground',
       href: '/antd-playground',
+      current: false,
+    },
+    {
+      name: 'Github',
+      href: 'https://github.com/Abdur-Shobur/form-builder',
       current: false,
     },
   ];
@@ -31,21 +35,12 @@ export function Header() {
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex  flex-1 items-center justify-center sm:items-stretch ">
-              <div className="flex shrink-0 items-center text-white font-semibold underline">
-                Form Builder
-              </div>
+              {/* <div className=""> */}
               <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-4">
+                <div className="flex space-x-1 md:space-x-4">
                   {menu.map((item) => (
                     <LinkItem key={item.name} item={item} />
                   ))}
-                  <Link
-                    className="absolute right-2 top-5 text-white font-semibold underline"
-                    href={`https://github.com/Abdur-Shobur/form-builder`}
-                    target="_blank"
-                  >
-                    Github
-                  </Link>
                 </div>
               </div>
             </div>
