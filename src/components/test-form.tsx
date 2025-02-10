@@ -50,13 +50,13 @@ const MyForm: React.FC = () => {
         )}
       </div>
       <label
-        for="checkboxLabelTwo"
-        class="flex items-center cursor-pointer select-none text-dark dark:text-white"
+        htmlFor="checkboxLabelTwo"
+        className="flex items-center cursor-pointer select-none text-dark dark:text-white"
       >
-        <div class="relative">
-          <input type="checkbox" id="checkboxLabelTwo" class="sr-only" />
-          <div class="flex items-center justify-center w-5 h-5 mr-4 border border-stroke dark:border-dark-3 rounded box">
-            <span class="opacity-0">
+        <div className="relative">
+          <input type="checkbox" id="checkboxLabelTwo" className="sr-only" />
+          <div className="flex items-center justify-center w-5 h-5 mr-4 border border-stroke dark:border-dark-3 rounded box">
+            <span className="opacity-0">
               <svg
                 width="11"
                 height="8"
