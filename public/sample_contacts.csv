@@ -1,0 +1,4 @@
+fname,lname,email,phone_1,phone_2,apn,address,city,state,county,zipcode,lead_status,agent,profession,value,gender,deal_closing_date,dob
+John,Doe,,01234567890,,,,,,,,,,,,,,
+Jane,Smith,,09876543210,,,,,,,,,,,,,,
+Mike,Taylor,,01231231234,01521471117,,,,,,,,,,,,,
