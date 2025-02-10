@@ -1,5 +1,4 @@
-import { z } from 'zod';
-import { FieldType, TailwindFieldType } from '../types';
+import { TailwindFieldType } from '../types';
 
 export const generateTailwindCodeGenerate = (fields: TailwindFieldType[]) => {
   console.log(fields);
@@ -10,10 +9,9 @@ export const generateTailwindCodeGenerate = (fields: TailwindFieldType[]) => {
   import { useForm, SubmitHandler } from 'react-hook-form';
   import { z } from 'zod';
   import { zodResolver } from '@hookform/resolvers/zod';
-  
-  // Zod validation schema
+   // Zod validation schema
   const FormSchema = z.object({
-   ${fields.map((f) => `  ${f.name}: z.string().optional(),`).join('\n')}
+   ${fields.map((f) => `  ${f.name}: z.string().optional(),`).join('\n   ')}
   });
   
   // TypeScript type inferred from the Zod schema

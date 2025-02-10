@@ -44,6 +44,8 @@ export default function TailwindFormBox({
     setFields(fields.filter((f) => f.key !== key));
   };
 
+  console.log(fields);
+
   const updateField = (values: Partial<TailwindFieldType>) => {
     setFields(
       fields.map((f) => (f.key === editField?.key ? { ...f, ...values } : f)),
@@ -284,9 +286,9 @@ export default function TailwindFormBox({
           <Form.Item label="Placeholder" name="placeholder">
             <Input />
           </Form.Item>
-          <Form.Item name="required" valuePropName="checked">
+          {/* <Form.Item name="required" valuePropName="checked">
             <Checkbox>Required</Checkbox>
-          </Form.Item>
+          </Form.Item> */}
           <Button type="primary" htmlType="submit">
             Save
           </Button>

@@ -79,16 +79,16 @@ const FormBuilder = () => {
           <div className="justify-between flex gap-4 mb-4  border rounded-lg px-3 py-2">
             <div className="flex gap-2">
               <Button
-                type={codeView ? 'primary' : 'default'}
+                type={!codeView ? 'default' : 'primary'}
                 onClick={() => setCodeView(true)}
               >
-                Code
+                View
               </Button>
               <Button
-                type={codeView ? 'default' : 'primary'}
+                type={!codeView ? 'primary' : 'default'}
                 onClick={() => setCodeView(false)}
               >
-                View
+                Code
               </Button>
             </div>
             <Button
@@ -103,7 +103,7 @@ const FormBuilder = () => {
           </div>
           <div className="overflow-auto max-h-[calc(100vh-280px)]">
             <AnimatePresence>
-              {codeView && (
+              {!codeView && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }} // Start from bottom-left
                   animate={{
@@ -123,7 +123,7 @@ const FormBuilder = () => {
             </AnimatePresence>
 
             <AnimatePresence>
-              {!codeView && (
+              {codeView && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }} // Start from bottom-left
                   animate={{

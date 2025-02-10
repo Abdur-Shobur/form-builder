@@ -37,6 +37,44 @@ const FormBuilderTailwind = () => {
   const [codeView, setCodeView] = useState(false);
 
   const addField = (type: string) => {
+    let validationType: any;
+
+    switch (type) {
+      case 'input':
+      case 'textarea':
+      case 'password':
+      case 'email':
+      case 'select':
+      case 'radio':
+      case 'color':
+        validationType = z.string().optional();
+        break;
+
+      case 'number':
+      case 'range':
+        validationType = z.number().optional();
+        break;
+
+      case 'checkbox':
+        validationType = z.boolean().optional(); // checkboxes return true/false
+        break;
+
+      case 'date':
+      case 'time':
+        validationType = z.string().optional();
+        break;
+
+      case 'file':
+        validationType = z
+          .instanceof(File)
+          .or(z.string()) // Allow file URL or File object
+          .optional();
+        break;
+
+      default:
+        validationType = z.string().optional();
+    }
+
     setFields([
       ...fields,
       {
@@ -45,7 +83,7 @@ const FormBuilderTailwind = () => {
         name: `field_${fields.length + 1}`,
         label: `Field ${fields.length + 1}`,
         placeholder: `Enter ${type}`,
-        validationSchema: z.string().optional(),
+        validationSchema: validationType,
       },
     ]);
   };
@@ -53,7 +91,7 @@ const FormBuilderTailwind = () => {
   return (
     <div className="p-4 overflow-hidden">
       <h2 className="text-2xl font-bold mb-4 text-center mt-4 ">
-        Ant Design Form Builder
+        Tailwind Form Builder with ZOD
       </h2>
       <div className="grid grid-cols-12 gap-4  h-[calc(100vh-180px)]">
         <div className="col-span-12 xl:col-span-2 rounded border overflow-auto px-4">
@@ -81,16 +119,16 @@ const FormBuilderTailwind = () => {
           <div className="justify-between flex gap-4 mb-4  border rounded-lg px-3 py-2">
             <div className="flex gap-2">
               <Button
-                type={codeView ? 'primary' : 'default'}
+                type={!codeView ? 'default' : 'primary'}
                 onClick={() => setCodeView(true)}
               >
-                Code
+                View
               </Button>
               <Button
-                type={codeView ? 'default' : 'primary'}
+                type={!codeView ? 'primary' : 'default'}
                 onClick={() => setCodeView(false)}
               >
-                View
+                Code
               </Button>
             </div>
             <Button
@@ -106,7 +144,7 @@ const FormBuilderTailwind = () => {
 
           <div className="overflow-auto max-h-[calc(100vh-280px)]">
             <AnimatePresence>
-              {codeView && (
+              {!codeView && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }} // Start from bottom-left
                   animate={{
@@ -126,7 +164,7 @@ const FormBuilderTailwind = () => {
             </AnimatePresence>
 
             <AnimatePresence>
-              {!codeView && (
+              {codeView && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }} // Start from bottom-left
                   animate={{

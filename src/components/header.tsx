@@ -15,6 +15,11 @@ export function Header() {
       current: false,
     },
     {
+      name: 'tailwind Playground',
+      href: '/tailwind-playground',
+      current: false,
+    },
+    {
       name: 'Ant Design Playground',
       href: '/antd-playground',
       current: false,

@@ -26,16 +26,18 @@ export const generateFormSchema = (fields: TailwindFieldType[]) => {
 
       case 'checkbox':
         schemaObject[field.name] = z.boolean();
+        break;
+
       case 'number':
         schemaObject[field.name] = z
           .string()
           .regex(/^\d+$/, 'This field must be a number');
         break;
+
       case 'select':
       case 'radio':
-        schemaObject[field.name] = z
-          .string()
-          .min(1, `${field.label} is required`);
+        schemaObject[field.name] = z.string().optional().nullable();
+
         break;
       default:
         schemaObject[field.name] = z.string().optional();

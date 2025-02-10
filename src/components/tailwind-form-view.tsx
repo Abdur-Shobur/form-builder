@@ -1,12 +1,11 @@
-import { Button, Form, Select, Empty, notification, FormProps } from 'antd';
+import { Button, Empty, notification } from 'antd';
 import { motion, AnimatePresence } from 'framer-motion';
 import React from 'react';
-import { FieldType, TailwindFieldType } from '../types';
+import { TailwindFieldType } from '../types';
 import { generateFormSchema } from '../lib/generate-form-schema';
 import { z } from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-const { Option } = Select;
 
 export default function TailwindDFormView({
   fields,
@@ -30,12 +29,16 @@ export default function TailwindDFormView({
   // Form submit handler
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
+    notification.success({
+      message: 'Success',
+      description: <pre>{JSON.stringify(data, null, 2)}</pre>,
+    });
   };
 
   return (
     <>
       <form
-        className="!p-4  rounded-lg  shadow border"
+        className="!p-4  rounded-lg  shadow border space-y-"
         onSubmit={handleSubmit(onSubmit)}
       >
         <AnimatePresence>
@@ -53,7 +56,7 @@ export default function TailwindDFormView({
                 y: 50,
                 transition: { duration: 0.1 },
               }}
-              className="p-3 border rounded-lg shadow"
+              className="p-2"
             >
               <div className="flex items-center gap-2 justify-between">
                 <div className="flex gap-2 flex-col flex-1">
